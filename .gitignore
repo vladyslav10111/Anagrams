@@ -1,0 +1,30 @@
+# Ігнорування IDE-папок
+.idea/
+.vscode/
+
+# Ігнорування системних файлів
+.DS_Store
+Thumbs.db
+
+# Ігнорування файлів Composer
+/vendor/
+composer.lock
+
+# Ігнорування файлів Docker
+.docker/
+docker-compose.yml
+
+# Ігнорування середовищних файлів
+.env
+
+# Логи та кеш
+/logs/
+cache/
+*.log
+
+# Ігнорування автозавантажених файлів Composer
+/vendor/
+
+# Ігнорування файлів налаштувань PHPStorm
+*.iml
+*.iws
