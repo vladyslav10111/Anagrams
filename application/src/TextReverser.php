@@ -1,26 +1,41 @@
 <?php
 namespace App;
 
-class TextReverser {
-    public function reverseText($text) {
-        $array_of_input_symbols = str_split($text);
-        $array_without_special_chars = [];
-        $special_chars_positions = [];
+//A class for creating anagrams
 
-        foreach ($array_of_input_symbols as $index => $symbol) {
-            if (preg_match('/[^a-zA-Z]/', $symbol)) {
-                $special_chars_positions[$index] = $symbol;
-            } else {
-                $array_without_special_chars[] = $symbol;
+class TextReverser {
+    public function reverseText($entered_text) {
+        $array_with_words = explode(' ', $entered_text);
+        $array_with_words_count = count($array_with_words);
+
+        for ($i = 0; $i < $array_with_words_count; $i++) {
+            $array_with_words[$i] = str_split($array_with_words[$i]);
+        }
+
+        foreach ($array_with_words as &$subArray) {
+            $letters = [];
+            foreach ($subArray as $index => $char) {
+                if (ctype_alpha($char)) {
+                    $letters[] = $char;
+                }
+            }
+
+            $reversedLetters = array_reverse($letters);
+            $letterIndex = 0;
+
+            foreach ($subArray as $index => $char) {
+                if (ctype_alpha($char)) {
+                    $subArray[$index] = $reversedLetters[$letterIndex];
+                    $letterIndex++;
+                }
             }
         }
 
-        $reverse_array_with_symbols = array_reverse($array_without_special_chars);
+            for ($i = 0; $i < $array_with_words_count; $i++) {
+                $array_with_words[$i] = implode($array_with_words[$i]);
+            }
 
-        foreach ($special_chars_positions as $index => $symbol) {
-            array_splice($reverse_array_with_symbols, $index, 0, $symbol);
+            return implode(' ' ,$array_with_words);
+
         }
-
-        return implode($reverse_array_with_symbols);
-    }
 }
