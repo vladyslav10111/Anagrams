@@ -1,10 +1,13 @@
 <?php
+declare(strict_types=1);
+
 namespace App;
 
-//A class for creating anagrams
-
-class TextReverser {
-    public function reverseText($entered_text) {
+// A class for creating anagrams
+class TextReverser
+{
+    public function reverseText(string $entered_text): string
+    {
         $array_with_words = explode(' ', $entered_text);
         $array_with_words_count = count($array_with_words);
 
@@ -31,11 +34,10 @@ class TextReverser {
             }
         }
 
-            for ($i = 0; $i < $array_with_words_count; $i++) {
-                $array_with_words[$i] = implode($array_with_words[$i]);
-            }
-
-            return implode(' ' ,$array_with_words);
-
+        for ($i = 0; $i < $array_with_words_count; $i++) {
+            $array_with_words[$i] = implode('', $array_with_words[$i]);
         }
+
+        return implode(' ', $array_with_words);
+    }
 }
